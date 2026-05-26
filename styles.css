@@ -174,7 +174,6 @@ video {
   text-shadow:
     0 0 12px rgba(146, 244, 214, 0.24),
     0 2px 8px rgba(0, 0, 0, 0.9);
-  text-transform: uppercase;
 }
 
 .brand span:last-child {
