@@ -26,7 +26,8 @@ const responses = {
       "> cryptocurrency: 88",
       "> stocks_ta: 91",
       "> missions_fieldwork: 90",
-      "> pm_ba_range: 80-99"
+      "> pm_range: 85-95",
+      "> ba_range: 90-99"
     ]
   },
   trust: {
