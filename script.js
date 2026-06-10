@@ -16,9 +16,9 @@ const responses = {
     bubble: "Domain verified. Human exists. Technical competence appears suspiciously high.",
     lines: [
       "> verify chris@topherlo.com",
-      "> domain: topherlo.com",
-      "> human_status: real enough",
-      "> recommendation: reply if the email was useful"
+      "> domain: topherlo.com — owned, haunted",
+      "> human_status: confirmed (exactly one)",
+      "> verdict: safe to reply"
     ]
   },
   stats: {
