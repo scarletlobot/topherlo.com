@@ -5,24 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Scarlet OS, the mildly haunted verification portal for Chris Topher Lo."
+      content="Christopher Lo builds practical tools for messy, human problems — AI workflows, medical mission logistics, markets, and health. Site managed by Scarlet, his mildly haunted dog-shaped OS."
     />
     <meta
       http-equiv="Content-Security-Policy"
       content="upgrade-insecure-requests; block-all-mixed-content; default-src 'self'; img-src 'self' data: https:; media-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
     />
-    <title>Christopher Lo</title>
+    <title>Christopher Lo — topherlo.com</title>
+    <link rel="canonical" href="https://topherlo.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://topherlo.com/" />
+    <meta property="og:title" content="Christopher Lo" />
+    <meta
+      property="og:description"
+      content="Practical tools for messy, human problems. Verified by Scarlet, resident ghost dog."
+    />
+    <meta property="og:image" content="https://topherlo.com/assets/scarlet/scarlet-ai.webp" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#071113" />
     <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=20" />
+    <link rel="stylesheet" href="styles.css?v=21" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Christopher Lo",
+        "url": "https://topherlo.com",
+        "email": "mailto:chris@topherlo.com",
+        "sameAs": ["https://www.instagram.com/cryptochrislo/"]
+      }
+    </script>
   </head>
   <body>
+    <a class="skip-link" href="#top">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Christopher Lo home">
+      <a class="brand" href="#top" id="brand-badge" aria-label="Christopher Lo home">
         <span class="brand-mark">Chris</span>
         <span>topherlo.com</span>
       </a>
       <nav aria-label="Primary">
         <a href="#profile">Profile</a>
+        <a href="#expertise">Expertise</a>
         <a href="#side-quests">Side Quests</a>
         <a href="mailto:chris@topherlo.com">Email</a>
       </nav>
@@ -33,27 +56,34 @@
         <div
           class="intro-media hero-video"
           data-easter="loop buffer: sentimental"
-          data-terminal="> scarlet_intro.loop: 12s sparkle hold"
+          data-terminal="> scarlet_intro.loop: 20s sparkle hold"
           data-bubble="The video loops itself. Click it if you need the puppy-to-AI audit trail again."
         >
           <video
             id="intro-video"
-            src="assets/video/scarlet-topherlo-montage-silent-v4.mp4?v=5"
+            src="assets/video/scarlet-montage-720.mp4?v=1"
             poster="assets/generated/scarlet-tombstone-ghost.webp"
             muted
             loop
             playsinline
             autoplay
+            preload="metadata"
             aria-label="Silent Scarlet intro montage. Click to restart."
           ></video>
         </div>
 
         <div class="hero-copy">
-          <p class="eyebrow">Scarlet OS 1.0</p>
-          <h1 id="hero-title">Welcome to Chris's corner of the internet, run by Scarlet.</h1>
+          <p class="eyebrow">topherlo.com · Scarlet OS 1.1</p>
+          <h1 id="hero-title">Christopher Lo</h1>
           <p class="lede">
-            Hi. I am Scarlet. Chris got me as a puppy. I lived a long happy life and died.
-            Now I haunt his computer and manage his calendar.
+            Builder of practical tools for messy, human problems — medical missions,
+            markets, health, and the hundred tiny emergencies that appear five minutes
+            before something important starts.
+          </p>
+          <p class="hero-note">
+            Site managed by Scarlet. Chris got her as a puppy; she lived a long, happy
+            life, and now she haunts his computer and runs his calendar. She considers
+            the arrangement permanent.
           </p>
           <div class="hero-actions">
             <button class="command-button primary" type="button" data-command="verify">Run Background Check</button>
@@ -80,24 +110,24 @@
           <h2 id="intro-title">Scarlet sleep-built this site in 10 minutes.</h2>
           <p>
             Scarlet took one look at the blank domain, muttered "absolutely not,"
-            and shipped this meme site.
+            and shipped this site. It has since been audited by a larger ghost.
           </p>
         </div>
         <div class="boot-grid intro-boot-grid" aria-label="Scarlet boot sequence">
           <figure class="boot-frame puppy">
-            <img src="assets/scarlet/001.webp" alt="Scarlet as a puppy" />
+            <img src="assets/scarlet/001.webp" alt="Scarlet as a puppy" loading="lazy" />
             <figcaption>puppy.img</figcaption>
           </figure>
           <figure class="boot-frame adult">
-            <img src="assets/scarlet/007.webp" alt="Scarlet balancing cookie treats on her head" />
+            <img src="assets/scarlet/007.webp" alt="Scarlet balancing cookie treats on her head" loading="lazy" />
             <figcaption>qa-stack.pass</figcaption>
           </figure>
           <figure class="boot-frame elder">
-            <img src="assets/scarlet/yawn.webp" alt="Scarlet yawning sleepily" />
+            <img src="assets/scarlet/yawn.webp" alt="Scarlet yawning sleepily" loading="lazy" />
             <figcaption>sleep-mode.log</figcaption>
           </figure>
           <figure class="boot-frame ai">
-            <img src="assets/scarlet/scarlet-ai.webp" alt="AI Scarlet at a desk" />
+            <img src="assets/scarlet/scarlet-ai.webp" alt="AI Scarlet at a desk" loading="lazy" />
             <figcaption>scarlet.ai</figcaption>
           </figure>
         </div>
@@ -179,7 +209,7 @@
           data-terminal="> ai_automation: agents, workflows, useful glue"
           data-bubble="AI is best when it quietly removes ten annoying steps."
         >
-          <span class="skill-label">AI & Automation</span>
+          <span class="skill-label">AI &amp; Automation</span>
           <strong>85</strong>
           <p>Useful prototypes, agents, workflows, and practical AI glue.</p>
           <div class="skill-bar" aria-label="AI and automation level 85 percent"><span style="--level: 85%"></span></div>
@@ -201,7 +231,7 @@
           data-terminal="> stocks_ta: probability, price action, risk"
           data-bubble="Stocks and TA share a lane: probability, patience, and not arguing with candles."
         >
-          <span class="skill-label">Stocks & Technical Analysis</span>
+          <span class="skill-label">Stocks &amp; Technical Analysis</span>
           <strong>91</strong>
           <p>Equities, price action, patterns, entries, exits, and humility when candles get rude.</p>
           <div class="skill-bar" aria-label="Stocks and technical analysis level 91 percent"><span style="--level: 91%"></span></div>
@@ -223,7 +253,7 @@
           data-terminal="> fitness_health: energy systems and recovery"
           data-bubble="Health is infrastructure. Scarlet approves of maintenance windows."
         >
-          <span class="skill-label">Fitness & Health</span>
+          <span class="skill-label">Fitness &amp; Health</span>
           <strong>81</strong>
           <p>Training, nutrition, energy, recovery, and systems that keep the human operational.</p>
           <div class="skill-bar" aria-label="Fitness and health level 81 percent"><span style="--level: 81%"></span></div>
@@ -312,6 +342,17 @@
       </section>
     </main>
 
+    <footer class="site-footer">
+      <div class="footer-row">
+        <span>© 2026 Christopher Lo</span>
+        <a href="mailto:chris@topherlo.com">chris@topherlo.com</a>
+      </div>
+      <p class="footer-credit">
+        Built &amp; haunted by Scarlet.
+        <button class="tombstone" id="tombstone" type="button" aria-label="A small tombstone. Best left alone.">🪦</button>
+      </p>
+    </footer>
+
     <aside class="scarlet-pet" aria-label="Scarlet narrator">
       <img src="assets/scarlet/scarlet-ai-avatar.webp" alt="AI Scarlet narrator" />
       <div>
@@ -320,6 +361,6 @@
       </div>
     </aside>
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=6"></script>
   </body>
 </html>

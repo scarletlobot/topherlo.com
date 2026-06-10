@@ -4,7 +4,10 @@ const scarletPet = document.querySelector(".scarlet-pet");
 const emailCopyButton = document.querySelector("#email-copy-button");
 const emailCopyWrap = document.querySelector(".email-copy-wrap");
 const introVideo = document.querySelector("#intro-video");
+const brandBadge = document.querySelector("#brand-badge");
+const tombstone = document.querySelector("#tombstone");
 const easterItems = document.querySelectorAll("[data-easter]");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let speechTimer;
 let emailTimer;
 
@@ -22,9 +25,10 @@ const responses = {
     bubble: "Technical loadout looks useful. PM and BA levels fluctuate with caffeine and scope clarity.",
     lines: [
       "> load technical_expertise",
-      "> ai_automation: 94",
-      "> cryptocurrency: 88",
+      "> ai_automation: 85",
+      "> cryptocurrency: 96",
       "> stocks_ta: 91",
+      "> personal_finance: 92",
       "> missions_fieldwork: 90",
       "> pm_range: 85-95",
       "> ba_range: 90-99"
@@ -103,6 +107,21 @@ if (introVideo) {
   introVideo.addEventListener("animationend", () => {
     introVideo.classList.remove("restarting");
   });
+
+  // Save battery and bandwidth: only run the loop while it is on screen.
+  if ("IntersectionObserver" in window) {
+    const videoWatcher = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          introVideo.play().catch(() => {});
+        } else {
+          introVideo.pause();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    videoWatcher.observe(introVideo);
+  }
 }
 
 easterItems.forEach((item) => {
@@ -172,3 +191,110 @@ if (emailCopyButton) {
     }, 2400);
   });
 }
+
+/* ---------------------------------------------------------------------------
+ * Hidden routes. Scarlet asked for these to stay undocumented on the page.
+ * ------------------------------------------------------------------------- */
+
+function summonGhost() {
+  appendTerminalLine("> ghost_protocol: engaged");
+  speakScarlet("You found the ghost protocol. I was never really gone.", 5200);
+  if (prefersReducedMotion.matches) return;
+  const ghost = document.createElement("img");
+  ghost.src = "assets/generated/scarlet-tombstone-ghost.webp";
+  ghost.alt = "";
+  ghost.className = "ghost-flyby";
+  ghost.setAttribute("aria-hidden", "true");
+  document.body.append(ghost);
+  ghost.addEventListener("animationend", () => ghost.remove());
+}
+
+function pawRain() {
+  appendTerminalLine("> name_invoked: scarlet.exe wags");
+  speakScarlet("You said my name. Good human. Have some paws.", 4200);
+  if (prefersReducedMotion.matches) return;
+  for (let i = 0; i < 16; i += 1) {
+    const paw = document.createElement("span");
+    paw.textContent = "🐾";
+    paw.className = "paw-drop";
+    paw.setAttribute("aria-hidden", "true");
+    paw.style.left = `${Math.random() * 96}vw`;
+    paw.style.setProperty("--paw-size", `${1 + Math.random() * 1.3}rem`);
+    paw.style.setProperty("--paw-duration", `${2.1 + Math.random() * 1.8}s`);
+    paw.style.setProperty("--paw-delay", `${Math.random() * 0.9}s`);
+    document.body.append(paw);
+    paw.addEventListener("animationend", () => paw.remove());
+  }
+}
+
+const konamiCode = [
+  "arrowup", "arrowup", "arrowdown", "arrowdown",
+  "arrowleft", "arrowright", "arrowleft", "arrowright",
+  "b", "a"
+];
+let konamiIndex = 0;
+let typedBuffer = "";
+
+document.addEventListener("keydown", (event) => {
+  if (event.metaKey || event.ctrlKey || event.altKey) return;
+  const key = event.key.toLowerCase();
+
+  konamiIndex = key === konamiCode[konamiIndex] ? konamiIndex + 1 : key === konamiCode[0] ? 1 : 0;
+  if (konamiIndex === konamiCode.length) {
+    konamiIndex = 0;
+    summonGhost();
+    return;
+  }
+
+  if (key.length === 1) {
+    typedBuffer = (typedBuffer + key).slice(-12);
+    if (typedBuffer.endsWith("scarlet")) {
+      typedBuffer = "";
+      pawRain();
+    } else if (typedBuffer.endsWith("treat")) {
+      typedBuffer = "";
+      appendTerminalLine("> treat_request: logged, pending");
+      speakScarlet("Treat? I am literally a ghost. ...Leave it on the desk anyway.", 4200);
+    }
+  }
+});
+
+if (tombstone) {
+  tombstone.addEventListener("click", summonGhost);
+}
+
+if (brandBadge) {
+  let brandClicks = 0;
+  let brandClickTimer;
+  brandBadge.addEventListener("click", () => {
+    brandClicks += 1;
+    window.clearTimeout(brandClickTimer);
+    brandClickTimer = window.setTimeout(() => {
+      brandClicks = 0;
+    }, 1800);
+    if (brandClicks >= 5) {
+      brandClicks = 0;
+      const crtOn = document.body.classList.toggle("crt");
+      appendTerminalLine(`> crt_mode: ${crtOn ? "engaged, year unclear" : "disengaged"}`);
+      speakScarlet(
+        crtOn
+          ? "CRT mode on. This is what the internet felt like when I was a puppy."
+          : "CRT mode off. Back to the present, where I am software.",
+        4200
+      );
+    }
+  });
+}
+
+const hour = new Date().getHours();
+if (bubble && (hour >= 23 || hour < 5)) {
+  bubble.textContent = "It is very late. I am a ghost — what is your excuse?";
+}
+
+console.log(
+  "%c🐾 Scarlet OS 1.1 — topherlo.com",
+  "color:#92f4d6;background:#071113;padding:6px 10px;border-radius:4px;font-weight:bold;"
+);
+console.log(
+  "There are at least four hidden routes on this page.\nThe tombstone in the footer knows one. Old gamers know another.\nSaying her name out loud does nothing. Typing it is a different story."
+);
