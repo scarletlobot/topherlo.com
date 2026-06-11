@@ -423,7 +423,8 @@ p {
   background: var(--mint);
 }
 
-.email-copy-wrap {
+.email-copy-wrap,
+.verify-wrap {
   position: relative;
 }
 
@@ -448,7 +449,7 @@ p {
 
 .email-copy-wrap:hover .chris-hover-card,
 .email-copy-wrap:focus-within .chris-hover-card,
-.email-copy-wrap.copied .chris-hover-card {
+.show-chris .chris-hover-card {
   opacity: 1;
   transform: translate(-50%, 0) scale(1);
 }
@@ -1210,7 +1211,7 @@ body.crt .site-footer {
 
   .email-copy-wrap:hover .chris-hover-card,
   .email-copy-wrap:focus-within .chris-hover-card,
-  .email-copy-wrap.copied .chris-hover-card {
+  .show-chris .chris-hover-card {
     transform: translateY(0) scale(1);
   }
 

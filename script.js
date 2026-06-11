@@ -3,6 +3,7 @@ const bubble = document.querySelector("#scarlet-bubble");
 const scarletPet = document.querySelector(".scarlet-pet");
 const emailCopyButton = document.querySelector("#email-copy-button");
 const emailCopyWrap = document.querySelector(".email-copy-wrap");
+const verifyWrap = document.querySelector(".verify-wrap");
 const introVideo = document.querySelector("#intro-video");
 const brandBadge = document.querySelector("#brand-badge");
 const tombstone = document.querySelector("#tombstone");
@@ -10,6 +11,18 @@ const easterItems = document.querySelectorAll("[data-easter]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let speechTimer;
 let emailTimer;
+let chrisPopTimer;
+
+// Only one Chris cutout may haunt the screen at a time.
+function popChris(wrap, duration = 2600) {
+  [verifyWrap, emailCopyWrap].forEach((other) => {
+    if (other && other !== wrap) other.classList.remove("show-chris");
+  });
+  if (!wrap) return;
+  wrap.classList.add("show-chris");
+  window.clearTimeout(chrisPopTimer);
+  chrisPopTimer = window.setTimeout(() => wrap.classList.remove("show-chris"), duration);
+}
 
 const responses = {
   verify: {
@@ -83,6 +96,9 @@ document.querySelectorAll("[data-command]").forEach((control) => {
     if (!response) return;
     speakScarlet(response.bubble, 5200);
     renderTerminal(response.lines);
+    if (control.dataset.command === "verify") {
+      popChris(verifyWrap, 3200);
+    }
   });
 });
 
@@ -181,14 +197,20 @@ if (emailCopyButton) {
     }
     emailCopyButton.textContent = "Copied";
     emailCopyButton.classList.add("copied");
-    emailCopyWrap.classList.add("copied");
+    popChris(emailCopyWrap, 2400);
     speakScarlet("Chris says: email copied. Scarlet says: reply responsibly.", 5200);
     window.clearTimeout(emailTimer);
     emailTimer = window.setTimeout(() => {
       emailCopyButton.textContent = "Email Chris";
       emailCopyButton.classList.remove("copied");
-      emailCopyWrap.classList.remove("copied");
     }, 2400);
+  });
+}
+
+if (emailCopyWrap && verifyWrap) {
+  // Hovering the email button reveals its card, so retire the verify one.
+  emailCopyWrap.addEventListener("pointerenter", () => {
+    verifyWrap.classList.remove("show-chris");
   });
 }
 
